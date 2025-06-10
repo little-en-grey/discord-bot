@@ -1,0 +1,16 @@
+{
+    "name": "discord",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "main.mjs",
+    "scripts": {
+        "start": "node main.mjs"
+    },
+    "dependencies": {
+        "better-sqlite3": "^11.10.0",
+        "discord.js": "^14.19.3",
+        "dotenv": "^16.5.0",
+        "sequelize": "^6.37.7",
+        "sequelize-cli": "^6.6.3"
+    }
+}

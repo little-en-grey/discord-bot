@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+    discord_app:
+        container_name: discord
+        build: .
+        volumes:
+            -   type: bind
+                source: ./app
+                target: /usr/src/app
+        tty: true
