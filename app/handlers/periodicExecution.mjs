@@ -120,7 +120,7 @@ export default async (client, doc) => {
 
     // 毎週月曜日12時に実行
     cron.schedule(
-      "0 12 * * 1",
+      "0 13 * * 1",
       async () => {
         await weeklyNotice(rotateChannel);
       },
@@ -152,8 +152,8 @@ async function weeklyNotice(channel) {
     const threadName = `定例ローテプラベ_${day.month}_${day.day}`;
 
     const ruleText = {
-      join_1: `22:00〜23:00前: ${RULE.sub_rule}`,
-      join_2: `23:00〜0:00: ${RULE.main_rule}`,
+      join_1: `22:00〜23:00前: ${rule.sub_rule}`,
+      join_2: `23:00〜0:00: ${rule.main_rule}`,
     };
     const reactionLines = REACTION_EMOJI
       .filter(e => e.name !== "join_3")

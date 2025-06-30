@@ -43,7 +43,7 @@ const serviceAccountAuth = new JWT({
 });
 const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID, serviceAccountAuth);
 
-//   ハンドラーの読み込み
+// ハンドラーの読み込み
 const handlers = new Map();
 const handlersPath = path.join(__dirname, "handlers");
 const handlerFiles = fs
@@ -57,7 +57,7 @@ for (const file of handlerFiles) {
   });
 }
 
-// #region スラッシュコマンド登録
+// スラッシュコマンド登録
 client.commands = new Collection();
 const categoryFoldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(categoryFoldersPath);
@@ -74,21 +74,8 @@ for (const folder of commandFolders) {
   }
 }
 
-client.once(Events.ClientReady, async () => {
-  TARGET_CREATE_THREAD.forEach(async (channel) => {
-    await client.channels.cache.get(channel.ch).messages.fetch();
-  });
-  await client.user.setActivity({
-    name: "スプラトゥーン3",
-    type: ActivityType.Playing,
-  });
-  console.log(`${client.user.tag} がログインしました！`);
 
-  // 定期実行
-  await handlers.get("periodicExecution").default(client, doc);
-});
-
-client.on("interactionCreate", async (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
   const command = interaction.client.commands.get(interaction.commandName);
 
@@ -110,7 +97,20 @@ client.on("interactionCreate", async (interaction) => {
 });
 // #endregion
 
+// 起動時
+client.once(Events.ClientReady, async () => {
+  TARGET_CREATE_THREAD.forEach(async (channel) => {
+    await client.channels.cache.get(channel.ch).messages.fetch();
+  });
+  await client.user.setActivity({
+    name: "スプラトゥーン3",
+    type: ActivityType.Playing,
+  });
+  console.log(`${client.user.tag} がログインしました！`);
 
+  // 定期実行
+  await handlers.get("periodicExecution").default(client, doc);
+});
 
 // メッセージ送信時の挙動
 client.on(Events.MessageCreate, async (message) => {
@@ -119,19 +119,19 @@ client.on(Events.MessageCreate, async (message) => {
 });
 
 // リアクション追加時の挙動
-client.on("messageReactionAdd", async (reaction, user) => {
+client.on(Events.MessageReactionAdd, async (reaction, user) => {
   if (user.id == client.user.id || user.bot) return;
   await handlers.get("messageReactionAdd").default(reaction, user);
 });
 
 // リアクション削除時の挙動
-client.on("messageReactionRemove", async (reaction, user) => {
+client.on(Events.MessageReactionRemove, async (reaction, user) => {
   if (user.id == client.user.id || user.bot) return;
   await handlers.get("messageReactionRemove").default(reaction, user);
 });
 
 // 新規メンバー参加時
-client.on("guildMemberAdd", async (member) => {
+client.on(Events.GuildMemberAdd, async (member) => {
   if (member.user.id == client.user.id || member.user.bot) return;
   await handlers.get("guildMemberAdd").default(member, doc);
 });
