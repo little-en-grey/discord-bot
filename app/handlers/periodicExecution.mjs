@@ -18,8 +18,7 @@ import { sendLog } from "../modules/sendLog.mjs";
 export default async (client, doc) => {
   try {
     // 毎日10時に実行
-    cron.schedule(
-      "* 10 * * *",
+    cron.schedule("0 10 * * *",
       async () => {
         try {
           let userIds = new Set();
@@ -119,8 +118,7 @@ export default async (client, doc) => {
     }
 
     // 毎週月曜日12時に実行
-    cron.schedule(
-      "0 13 * * 1",
+    cron.schedule("0 12 * * 1",
       async () => {
         await weeklyNotice(rotateChannel);
       },
@@ -130,8 +128,7 @@ export default async (client, doc) => {
     );
 
     // 毎週水曜日12時に実行
-    cron.schedule(
-      "0 12 * * 3",
+    cron.schedule("0 12 * * 3",
       async () => {
         await reminder(rotateChannel);
       },
@@ -140,7 +137,7 @@ export default async (client, doc) => {
       }
     );
   } catch (error) {
-    console.log("定期実行:", error);
+    sendLog(true, `活動ログ取得`, "message", error);
   }
 };
 

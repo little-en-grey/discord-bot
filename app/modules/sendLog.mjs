@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import { LOG_WEBHOOK_URL } from "../consts.mjs";
 
 export async function sendLog(isError, source, message = "", error = null) {
   try {
@@ -43,7 +42,7 @@ export async function sendLog(isError, source, message = "", error = null) {
       };
     }
 
-    await fetch(LOG_WEBHOOK_URL, {
+    await fetch(process.env.LOG_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

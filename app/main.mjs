@@ -74,11 +74,9 @@ for (const folder of commandFolders) {
   }
 }
 
-
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
   const command = interaction.client.commands.get(interaction.commandName);
-
   if (!command) {
     console.error(`「${interaction.commandName}」コマンドは見つかりませんでした。`);
     return;
@@ -95,7 +93,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
 });
-// #endregion
 
 // 起動時
 client.once(Events.ClientReady, async () => {

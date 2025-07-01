@@ -5,8 +5,6 @@
 // サーバーID
 export const GUILD_ID = "981489053134376960";
 
-export const LOG_WEBHOOK_URL = "https://ptb.discord.com/api/webhooks/1342497168082075711/fQsoWqZ6SKlLtf0hycUEGe2wMxgO6JwUkbVGHpYhI48ywYF6WwNyrn7Lb-rRZ2BHTyGf";
-
 // スレッド作成対象チャンネルID
 export const PRIVATE_CH_ID = "1339812758719299654";     // プラベ
 export const OPEN_CH_ID = "1339812684962463764";        // オープン
