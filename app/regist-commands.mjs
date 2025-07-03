@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from "url";
 import { REST, Routes } from 'discord.js';
+import { config } from 'dotenv';
+config();
 
 // 現在のファイルの絶対パスを取得
 const __filename = fileURLToPath(import.meta.url);
