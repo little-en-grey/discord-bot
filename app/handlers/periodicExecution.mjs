@@ -12,6 +12,7 @@ import {
   ROTATION_RULE,
   PRIVATE_MENTION_ID,
   ROTATION_CH_ID,
+  LATE_NIGHT_MENTION_ID
 } from "../consts.mjs";
 import { sendLog } from "../modules/sendLog.mjs";
 

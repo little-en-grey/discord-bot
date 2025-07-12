@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "checkJs": true,
+        "module": "NodeNext", // または "esnext"
+        "moduleResolution": "nodenext", // ← これが重要！
+        "target": "es2020",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "strict": true
+    },
+    "include": [
+        "./**/*.js",
+        "./**/*.mjs"
+    ]
+}
