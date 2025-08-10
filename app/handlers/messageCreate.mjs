@@ -11,6 +11,10 @@ import {
 } from "../consts.mjs";
 import { sendLog } from "../modules/sendLog.mjs";
 
+/**
+ * メッセージ送信時の処理
+ * @param {*} message 
+ */
 export default async (message) => {
   const channelId = message.channel.id;
   try {

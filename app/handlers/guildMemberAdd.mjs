@@ -1,5 +1,10 @@
 import { GUILD_ID } from "../consts.mjs";
 
+/**
+ * メンバー入室時の処理
+ * @param {*} member 
+ * @param {*} doc 
+ */
 export default async (member, doc) => {
   if (member.guild.id !== GUILD_ID) return;
   try {

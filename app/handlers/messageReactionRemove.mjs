@@ -5,8 +5,12 @@ import {
   CLOSE_EMOJI,
 } from "../consts.mjs";
 
+/**
+ * リアクション削除時の処理
+ * @param {*} reaction 
+ * @param {*} user 
+ */
 export default async (reaction, user) => {
-  console.log("リアクション削除");
   try {
     if (user.bot) return; // Botのリアクションは無視
 
