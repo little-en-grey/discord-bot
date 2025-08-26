@@ -6,6 +6,10 @@ import {
   PRIVATE_CH_ID,
 } from "../consts.mjs";
 
+/**
+ * 
+ * @param {*} message 
+ */
 export default async (message) => {
   try {
     const parentMessage = await message.channel.fetchStarterMessage();
@@ -87,6 +91,11 @@ export default async (message) => {
   }
 };
 
+/**
+ * 
+ * @param {*} array 
+ * @returns 
+ */
 function splitIntoGroups(array) {
   let num = array.length;
   let result = [];
@@ -123,7 +132,14 @@ function splitIntoGroups(array) {
   }
 }
 
-function createTeams(array, count, size, startTeamNumber) {
+/**
+ * 
+ * @param {*} array 
+ * @param {*} count 
+ * @param {*} size 
+ * @returns 
+ */
+function createTeams(array, count, size) {
   let teams = [];
   for (let i = 0; i < count; i++) {
     teams.push(array.slice(size * i, size * (i + 1)));

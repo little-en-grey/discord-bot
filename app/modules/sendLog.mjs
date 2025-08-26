@@ -1,11 +1,18 @@
 import fetch from "node-fetch";
 
+/**
+ * 
+ * @param {boolean} isError 
+ * @param {*} source 
+ * @param {*} message 
+ * @param {*} error 
+ */
 export async function sendLog(isError, source, message = "", error = null) {
   try {
     const today = new Date();
     // today.setHours(today.getHours() + 9);
 
-    let payload = "";
+    let payload = {};
     if (isError) {
       payload = {
         embeds: [

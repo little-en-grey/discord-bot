@@ -1,4 +1,7 @@
-// 現在の日付を取得(yyyy_mm_ddの形式でレスポンス)
+/**
+ * 現在の日付を取得(yyyy_mm_ddの形式でレスポンス)
+ * @returns 
+ */
 export function getNowDate() {
   const options = {
     year: "numeric",
@@ -31,7 +34,11 @@ export function getThisWeekDay() {
   };
 }
 
-// 対象の曜日がその月の何回目にあたるかを取得
+/**
+ * 対象の曜日がその月の何回目にあたるかを取得
+ * @param {*} friday 
+ * @returns 
+ */
 export function getFridayCountInMonth(friday) {
   const { year, month, day } = friday;
 
@@ -55,7 +62,10 @@ export function getFridayCountInMonth(friday) {
   return count;
 }
 
-// 日本時間で昨日の日付（YYYY-MM-DD）を取得
+/**
+ * 日本時間で昨日の日付（YYYY-MM-DD）を取得
+ * @returns 
+ */
 export function getYesterdayJST() {
   const now = new Date();
   now.setUTCHours(now.getUTCHours() + 9); // UTC+9 に変換
