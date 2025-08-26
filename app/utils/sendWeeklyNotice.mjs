@@ -30,6 +30,7 @@ export default async (client) => {
     const rule = ROTATION_RULE[count - 1];
     const threadName = `定例ローテプラベ_${day.month}_${day.day}`;
 
+    /** @type {Record<string, string>} */
     const ruleText = {
       join_1: `22:00〜23:00前: ${rule.sub_rule}`,
       join_2: `23:00〜0:00: ${rule.main_rule}`,
