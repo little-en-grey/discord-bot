@@ -18,9 +18,9 @@ export default async (client, doc) => {
     // 毎日10時に実行
     cron.schedule("0 10 * * *", async () => {
       // 参加ログ取得
-      getTarget(client, doc);
+      await getTarget(client, doc);
       // 日次メッセージ送信
-      setDaily(client);
+      await setDaily(client);
     }, { timezone: "Asia/Tokyo", });
 
     // 毎週月曜日12時に実行
