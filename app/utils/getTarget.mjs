@@ -109,8 +109,12 @@ export default async (client, doc) => {
                 return (createdAtJSTString === yesterday && msg.author.bot)
             });
 
+            console.log('botMessage')
+            console.log(botMessage)
+
             if (botMessage) {
                 for (const reaction of botMessage.reactions.cache.values()) {
+                    console.log(reaction)
                     const users = await reaction.users.fetch();
                     users.forEach((user) => {
                         if (!user.bot) userIds.add(user.id); // ボットは除外
