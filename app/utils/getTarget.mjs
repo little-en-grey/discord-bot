@@ -35,6 +35,9 @@ export default async (client, doc) => {
                 continue;
             }
 
+            console.log(ch)
+            console.log(ROTATION_CH_ID)
+            console.log(dayOfWeek)
             if (ch != ROTATION_CH_ID) {
                 let fetchedMessages = await channel.messages.fetch({
                     limit: 100,
@@ -65,6 +68,7 @@ export default async (client, doc) => {
                     }
                 }
             } else if (ch === ROTATION_CH_ID && dayOfWeek == 4) {
+                console.log("定例チェック")
                 let fetchedMessages = await channel.messages.fetch({
                     limit: 10,
                 });
@@ -96,7 +100,7 @@ export default async (client, doc) => {
         const dailyChannel = await client.channels.fetch(DAILY_CH_ID);
         if (dailyChannel && dailyChannel.isTextBased()) {
             let messages = await dailyChannel.messages.fetch({
-                limit: 1,
+                limit: 3,
             });
 
             let botMessage = messages.find(msg => {
