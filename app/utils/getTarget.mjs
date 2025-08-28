@@ -72,18 +72,7 @@ export default async (client, doc) => {
                 let fetchedMessages = await channel.messages.fetch({
                     limit: 10,
                 });
-                console.log(fetchedMessages)
-                let botMessage = fetchedMessages.find(msg => {
-                    const createdAtJST = new Date(msg.createdAt);
-                    createdAtJST.setUTCHours(createdAtJST.getUTCHours() + 9);
-                    const createdAtJSTString = createdAtJST
-                        .toISOString()
-                        .split("T")[0];
-
-                    return (createdAtJSTString === yesterday && msg.author.bot)
-                });
-
-                console.log(botMessage)
+                let botMessage = fetchedMessages.find(msg => msg.author.bot);
 
                 if (botMessage) {
                     for (const { id } of REACTION_EMOJI) {
