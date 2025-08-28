@@ -72,6 +72,7 @@ export default async (client, doc) => {
                 let fetchedMessages = await channel.messages.fetch({
                     limit: 10,
                 });
+                console.log(fetchedMessages)
                 let botMessage = fetchedMessages.find(msg => {
                     const createdAtJST = new Date(msg.createdAt);
                     createdAtJST.setUTCHours(createdAtJST.getUTCHours() + 9);
@@ -81,6 +82,8 @@ export default async (client, doc) => {
 
                     return (createdAtJSTString === yesterday && msg.author.bot)
                 });
+
+                console.log(botMessage)
 
                 if (botMessage) {
                     for (const { id } of REACTION_EMOJI) {
@@ -99,6 +102,7 @@ export default async (client, doc) => {
         // 日次
         const dailyChannel = await client.channels.fetch(DAILY_CH_ID);
         if (dailyChannel && dailyChannel.isTextBased()) {
+            console.log("日次チェック")
             let messages = await dailyChannel.messages.fetch({
                 limit: 3,
             });
